@@ -3790,7 +3790,9 @@ class Endcord:
         # guild position
         self.guild_positions = []
         if "guildFolders" in self.discord_settings:
-            self.guild_positions = [self.discord_settings["guildFolders"]["guildPositions"]]
+            print("guildFolders contents:", self.discord_settings.get("guildFolders", {}))
+
+            self.guild_positions = self.discord_settings["guildFolders"].get("guildPositions", [])
             for folder in self.discord_settings["guildFolders"].get("folders", []):
                 self.guild_positions += folder["guildIds"]
             # if some folders are missing use default positions
